@@ -1,0 +1,25 @@
+$colorTitulo : rgb(40, 97, 204);
+
+$sizeTitulo : 25px;
+
+$alineacionTitulo : center;
+
+$colorSubtitulo : rgb(224, 51, 181);
+
+$sizeSubtitulo : 15px;
+
+$cursiva : italic;
+
+
+.titulo {
+    color : $colorTitulo;
+    font-size: $sizeTitulo;
+    text-align: $alineacionTitulo;  
+}
+
+.subtitulo{
+    color : $colorSubtitulo;
+    font-size: $sizeSubtitulo;
+    text-align: $alineacionTitulo;
+    font-style: $cursiva;  
+}
