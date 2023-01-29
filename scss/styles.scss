@@ -23,3 +23,54 @@ $cursiva : italic;
     text-align: $alineacionTitulo;
     font-style: $cursiva;  
 }
+
+.cuadrado {
+    width: 100%;
+    height: 100px;
+    margin-top: 15px
+}
+
+.cuadradoNegro{
+    @extend .cuadrado;
+    background-color: black;
+}
+.cuadradoAmarillo{
+    @extend .cuadrado;
+    background-color: yellow;
+}
+
+.sombra{
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.textoCuadrados {
+    font-size: 20px;
+    text-align: center;
+}
+
+.textoCNegro{
+    @extend .textoCuadrados;
+    color: white;
+    text-decoration: overline white;
+    font-style: $cursiva;  
+
+}
+
+.textoCAmarillo{
+    @extend .textoCuadrados;
+    @extend .sombra;
+    color: blue;
+}
+
+ul{
+    font-size: 30px;
+    color : blue;
+    ul{
+        font-size: 25px;
+        color : red;
+        ul{
+            font-size: 20px;
+            color : green;
+        }
+    }
+}
