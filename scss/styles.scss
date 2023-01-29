@@ -63,13 +63,16 @@ $cursiva : italic;
 }
 
 ul{
-    font-size: 30px;
+    //1º Operación: Suma 5
+    font-size: 30px + 5;
     color : blue;
     ul{
-        font-size: 25px;
+        //2º Operación: Resta 5
+        font-size: 35px - 5;
         color : red;
         ul{
-            font-size: 20px;
+            //3º Operación: Multiplica por 5
+            font-size: 5px * 5;
             color : green;
         }
     }
