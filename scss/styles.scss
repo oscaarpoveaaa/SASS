@@ -1,22 +1,29 @@
+//Variable que guarda un color azul para los titulos
 $colorTitulo : rgb(40, 97, 204);
 
+//Variable que guarda el tamaño para los titulos
 $sizeTitulo : 25px;
 
+//Variable que guarda la alineación para los titulos
 $alineacionTitulo : center;
 
+//Variable que guarda el color de los subtitulos
 $colorSubtitulo : rgb(224, 51, 181);
 
+//Variable que guarda el tamaño para los subtitulos
 $sizeSubtitulo : 15px;
 
+//Variable que guarda el formato cursiva
 $cursiva : italic;
 
-
+//Utilizo todas las variables para los titulos
 .titulo {
     color : $colorTitulo;
     font-size: $sizeTitulo;
     text-align: $alineacionTitulo;  
 }
 
+//Utilizo todas las variables para los subtitulos
 .subtitulo{
     color : $colorSubtitulo;
     font-size: $sizeSubtitulo;
@@ -24,16 +31,20 @@ $cursiva : italic;
     font-style: $cursiva;  
 }
 
+//Creo un cuadrado base con la anchura, altura y un margen para que despues extiendan de el mas cuadrados con distintos colores 
 .cuadrado {
     width: 100%;
     height: 100px;
     margin-top: 15px
 }
 
+//Cuadrado negro que extiende de cuadrado
 .cuadradoNegro{
     @extend .cuadrado;
     background-color: black;
 }
+
+//Cuadrado amarillo que extiende de cuadrado
 .cuadradoAmarillo{
     @extend .cuadrado;
     background-color: yellow;
@@ -48,6 +59,7 @@ $cursiva : italic;
     text-align: center;
 }
 
+//Texto que extiende de el texto para dentro de los cuadrados
 .textoCNegro{
     @extend .textoCuadrados;
     color: white;
@@ -56,6 +68,7 @@ $cursiva : italic;
 
 }
 
+//Extiende de sombra 
 .textoCAmarillo{
     @extend .textoCuadrados;
     @extend .sombra;
@@ -83,12 +96,13 @@ ul{
     }
 }
 
-
+//Mixin que le pone un bordes a un botón
 @mixin redondear-border($radio) {
     border-radius: $radio;
   }
 
-  @mixin hover-effect {
+//Mixin que hace una pequeña transición hacia arriba
+@mixin hover-effect {
     transition: all 0.3s ease-in-out;
     &:hover {
       transform: translateY(-5px);
@@ -96,6 +110,7 @@ ul{
     }
   }
   
+  //Incluye la transición y el borde redondo
   .btn {
     @include redondear-border(5px);
     @include hover-effect;
@@ -103,7 +118,7 @@ ul{
     font-size: 30px;
   }
 
-
+//Crea una caja que recibe como parametro el color de fondo y el nombre de la clase
 @mixin crea-caja($color-fondo: #26619C, $name: lapislazuli) {
     .box-#{$name} {
       box-sizing: border-box;
@@ -141,6 +156,7 @@ ul{
 
   @include crea-mensaje;
 
+  //Tipografia Helvetica
   @mixin tipografia {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: bold;
@@ -152,6 +168,7 @@ ul{
   }
 
 
+//Creacion de un grid mediante funciones
   $grid: (
   cantidad-col: 12,
   ancho-col: 60px,
@@ -170,6 +187,17 @@ ul{
   @function calc-gutter($gutter) {
     @return $gutter / 2;
   }
+
+  //Aumentar letra
+  @function aumentar($num) {
+    @return $num * 2;
+  }
+
+  //Reducir letra
+  @function reducir($num) {
+    @return $num / 2;
+  }
+  
   
   .wrap {
     margin: 0 auto;
@@ -185,14 +213,21 @@ ul{
     float: left;
     margin: 0 calc-gutter(map-get($grid, margen));  
     width: calc-col(8);
+    font-size: aumentar(30px);
+    box-shadow: 0px 10px 10px rgb(84, 190, 216);
   }
   aside {
     float: left;
     margin: 0 calc-gutter(map-get($grid, margen));
     width: calc-col(4);
+    font-size: reducir(60px);
+    box-shadow: 0px 10px 10px rgb(80, 156, 80);
   }
 
+  //Array de tamaños que sirve para crear clases con sus parámetros correspondientes
   $tamanos: 10px, 20px, 30px, 40px;
+
+  //Array de colores que sirve para crear clases con sus parámetros correspondientes
   $colores: yellowgreen, gray, blueviolet, olivedrab;
 
   @each $color in $colores {
