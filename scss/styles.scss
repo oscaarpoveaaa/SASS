@@ -83,10 +83,31 @@ ul{
     }
 }
 
-@mixin crea-caja($color: #26619C, $name: lapislazuli) {
+
+@mixin redondear-border($radio) {
+    border-radius: $radio;
+  }
+
+  @mixin hover-effect {
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .btn {
+    @include redondear-border(5px);
+    @include hover-effect;
+    padding: 30px;
+    font-size: 30px;
+  }
+
+
+@mixin crea-caja($color-fondo: #26619C, $name: lapislazuli) {
     .box-#{$name} {
       box-sizing: border-box;
-      background-color: $color;
+      background-color: $color-fondo;
       width: 100%;
       height: 100px;
       padding: 20px;
@@ -97,3 +118,87 @@ ul{
   }
 
   @include crea-caja;
+
+  @mixin crea-mensaje($color: green, $name: verde) {
+    .mensaje-#{$name} {
+      background-color: $color;
+      border: 1px solid #ccc;
+      padding: 10px;
+      color: #333;
+    }
+  }
+
+  @include crea-mensaje;
+
+  @mixin crea-mensaje($color: red, $name: rojo) {
+    .mensaje-#{$name} {
+      background-color: $color;
+      border: 1px solid #ccc;
+      padding: 10px;
+      color: #333;
+    }
+  }
+
+  @include crea-mensaje;
+
+  @mixin tipografia {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  h1, h2, h3 {
+    @include tipografia;
+  }
+
+
+  $grid: (
+  cantidad-col: 12,
+  ancho-col: 60px,
+  margen: 20px,
+  container: 960px
+);
+
+@function calc-container($grid: $grid) {
+    @return (map-get($grid, ancho-col) + map-get($grid, margen)) * map-get($grid, cantidad-col);
+  }
+  // ancho de cada columna
+  @function calc-col($cantidad-col, $grid: $grid) {
+    @return (map-get($grid, ancho-col) * $cantidad-col) + (map-get($grid, margen) * $cantidad-col) - map-get($grid, margen);
+  }
+  // margen para cada columna
+  @function calc-gutter($gutter) {
+    @return $gutter / 2;
+  }
+  
+  .wrap {
+    margin: 0 auto;
+    width: calc-container();
+
+    &:after {
+      clear: both;
+      content: '';
+      display: block;
+    } 
+  }
+  section {
+    float: left;
+    margin: 0 calc-gutter(map-get($grid, margen));  
+    width: calc-col(8);
+  }
+  aside {
+    float: left;
+    margin: 0 calc-gutter(map-get($grid, margen));
+    width: calc-col(4);
+  }
+
+  
+  $colors: yellowgreen, gray, blueviolet, olivedrab;
+
+  @each $color in $colors {
+    .#{$color}-bg {
+      background-color: $color;
+      padding: 50px;
+      box-shadow: 0px 10px 10px black;
+    }
+  }
