@@ -192,13 +192,47 @@ ul{
     width: calc-col(4);
   }
 
-  
-  $colors: yellowgreen, gray, blueviolet, olivedrab;
+  $tamanos: 10px, 20px, 30px, 40px;
+  $colores: yellowgreen, gray, blueviolet, olivedrab;
 
-  @each $color in $colors {
+  @each $color in $colores {
     .#{$color}-bg {
       background-color: $color;
-      padding: 50px;
       box-shadow: 0px 10px 10px black;
+    }
+  }
+
+@each $margen in $tamanos {
+  .margin-#{$margen} {
+    margin: $margen;
+  }
+}
+
+
+@each $tamano in $tamanos {
+  .padding-#{$tamano} {
+    padding: $tamano;
+  }
+}
+
+$tipos-letras: bold, italic, underline, uppercase;
+
+@each $letra in $tipos-letras {
+    .texto-#{$letra} {
+        @if $letra == bold {
+          font-weight: bold;
+        } @else if $letra == italic {
+          font-style: italic;
+        } @else if $letra == underline {
+          text-decoration: underline;
+        } @else if $letra == uppercase {
+          text-transform: uppercase;
+        }
+  }
+}
+
+@each $size in $tamanos {
+    .size-Letra-#{$size} {
+      font-size: $size;
     }
   }
