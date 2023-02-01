@@ -74,6 +74,26 @@ ul{
             //3º Operación: Multiplica por 5
             font-size: 5px * 5;
             color : green;
+            ul{
+                //4º Operación: Multiplica por 7
+                font-size:7px * 5;
+                color : orange;
+            }
         }
     }
 }
+
+@mixin crea-caja($color: #26619C, $name: lapislazuli) {
+    .box-#{$name} {
+      box-sizing: border-box;
+      background-color: $color;
+      width: 100%;
+      height: 100px;
+      padding: 20px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include crea-caja;
